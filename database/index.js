@@ -21,8 +21,8 @@ let save = (results) => {
   const shapedArr = reposArr.map((repo) => {
     return {user: repo.owner.login, repoId: repo.id, repoName: repo.name, forks: repo.forks}
   });
-  // Repo.findOneAndUpdate(user, repoId, repoName, forks, function (err, result) {
-  //   if (!result) {
+  // Repo.find({user: repo.owner.login, repoId: repo.id, repoName: repo.name, forks: repo.forks}, function (err, result) {
+  //   if (err) {
   //     result = new Repo();
   //   }
   // })

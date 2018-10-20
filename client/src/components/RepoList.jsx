@@ -12,7 +12,7 @@ const RepoList = (props) => (
 
 const RepoItem = (props) => (
   <ul>
-    <li>Repo Name: {props.repo.repoName}</li> 
+    <li>Repo Name: {props.repo.repoName}, Forks: {props.repo.forks}</li> 
   </ul>
 )
 

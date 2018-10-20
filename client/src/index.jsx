@@ -9,9 +9,12 @@ class App extends React.Component {
     super(props);
     this.state = { 
       repos: [],
-
     }
+  }
 
+  componentDidMount() {
+    this.displayTop();
+    // console.log('hi')
   }
 
   search (term) {
@@ -21,24 +24,31 @@ class App extends React.Component {
       method: "POST",
       url: "/repos",
       dataType: "application/json",
-      data: {term}
-    
+      data: {term},
+      success: this.displayTop()
     })
-      .done(function() {
-        alert( "Data Saved: " );
-      });
+      // .done(function() {
+      //   alert( "Data Saved: " );
+      // });
 
+    // $.ajax({
+    //   method: "GET",
+    //   url: "/repos",
+    //   success: (result) =>
+    //     // console.log('lahallllll:', result)
+    //     this.setState({repos: result})
+    // })
+  };
+
+  displayTop () {
     $.ajax({
       method: "GET",
       url: "/repos",
       success: (result) =>
-        // console.log('lahallllll:', result)
         this.setState({repos: result})
-    
     })
-     
-
   }
+  
 
   render () {
     return (<div>
