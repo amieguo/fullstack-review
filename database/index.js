@@ -1,16 +1,28 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+mongoose.connect('mongodb://localhost:27017/fetcher');
 
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
   user: String,
-  repoId: {type: Number, unique: true}, 
+  repoId: {type: Number, unique: true, index: true}, 
   repoName: String,
   forks: Number
 
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
+
+// let save = (results) => {
+//   const reposArr = JSON.parse(results.body);
+//   reposArr.map((repo) => Repo.find({repoId: repo.id}, (error, results) => {
+//     if (error) {
+//       var repo=  new Repo(user: repo.owner.login, repoId: repo.id, repoName: repo.name, forks: repo.forks)
+//     }))
+//   }
+// };
+
+
+
 
 let save = (results) => {
   // TODO: Your code here
@@ -35,6 +47,9 @@ let save = (results) => {
   });
   
 };
+
+
+
 
 let selectTop = (cb) => {
   Repo.find({})
