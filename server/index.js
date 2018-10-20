@@ -32,7 +32,7 @@ app.get('/repos', function (req, res) {
       res.status(400).send(err);
     } else {
       res.send(result);
-      console.log(result)
+      // console.log('ajflksjklfjskdlfjdkf:', result)
     }
   })
 

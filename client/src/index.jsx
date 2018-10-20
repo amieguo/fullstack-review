@@ -31,9 +31,9 @@ class App extends React.Component {
     $.ajax({
       method: "GET",
       url: "/repos",
-      success: 
-        console.log(top)
-      
+      success: (result) =>
+        // console.log('lahallllll:', result)
+        this.setState({repos: result})
     
     })
      

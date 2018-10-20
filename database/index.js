@@ -18,14 +18,14 @@ let save = (results) => {
   // the MongoDB
   // check if the id (repoid) already exists. if it does, do not insert
   const reposArr = JSON.parse(results.body);
-  // const shapedArr = reposArr.map((repo) => {
-  //   return {user: repo.owner.login, repoId: repo.id, repoName: repo.name, forks: repo.forks}
-  // });
-  Repo.findOneAndUpdate(user, repoId, repoName, forks, function (err, result) {
-    if (!result) {
-      result = new Repo();
-    }
-  })
+  const shapedArr = reposArr.map((repo) => {
+    return {user: repo.owner.login, repoId: repo.id, repoName: repo.name, forks: repo.forks}
+  });
+  // Repo.findOneAndUpdate(user, repoId, repoName, forks, function (err, result) {
+  //   if (!result) {
+  //     result = new Repo();
+  //   }
+  // })
   Repo.insertMany(shapedArr, function(err, res) {
     if (err) {
       console.log(err);
@@ -37,16 +37,10 @@ let save = (results) => {
 };
 
 let selectTop = (cb) => {
-  Repo.find()
+  Repo.find({})
   .sort({forks: 'desc'})
   .limit(25)
-  .exec(function(err, post) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Selected top 25 successful')
-    } 
-  });
+  .exec(cb);
 };
 
 
